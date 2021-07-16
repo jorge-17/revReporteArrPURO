@@ -8,8 +8,8 @@ fechaReporte = datetime.strptime(fechaReporte, '%Y-%m-%d')
 
 
 
-file = open("file_amortizacion.txt", "r")
-file_valores = open("val_reporte_auto.txt", "r")
+file = open("archivos/file_amortizacion.txt", "r")
+file_valores = open("archivos/val_reporte_auto.txt", "r")
 val_line = file_valores.readline()
 arrLine_val = val_line.split()
 
@@ -74,32 +74,35 @@ for i, fecha in enumerate(fechaFiltro):
 
 data = []
 moi = capitalTotal + float(enganche) + float(residual)
-
-if moi_repo == round(moi,2):
-    data.append([moi, moi_repo, 'true'])
+moi = round(moi, 2)
+if moi_repo == moi:
+    data.append(["MOI", moi, moi_repo, 'true'])
 else:
-    data.append([moi, moi_repo, 'false'])
+    data.append(["MOI", moi, moi_repo, 'false'])
 
-if ej_mensual_repo == round(ej_mensual_res, 2):
-    data.append([ej_mensual_res, ej_mensual_repo, 'true'])
+ej_mensual_res = round(ej_mensual_res, 2)
+if ej_mensual_repo == ej_mensual_res:
+    data.append(["EJ MENSUAL", ej_mensual_res, ej_mensual_repo, 'true'])
 else:
-    data.append([ej_mensual_res, ej_mensual_repo, 'false'])
+    data.append(["EJ MENSUAL", ej_mensual_res, ej_mensual_repo, 'false'])
 
-if ej_acumulado_repo == round(ej_acumulado_res, 2):
-    data.append([ej_acumulado_res, ej_acumulado_repo, 'true'])    
+ej_acumulado_res = round(ej_acumulado_res, 2)
+if ej_acumulado_repo == ej_acumulado_res:
+    data.append(["EJ ACUMULADO", ej_acumulado_res, ej_acumulado_repo, 'true'])    
 else:
-    data.append([ej_acumulado_res, ej_acumulado_repo, 'false']) 
+    data.append(["EJ ACUMULADO", ej_acumulado_res, ej_acumulado_repo, 'false']) 
 
-vu_exigido_res = vu_exigido_res + float(enganche)
-if vu_exigido_repo == round(vu_exigido_res, 2):
-    data.append([vu_exigido_res, vu_exigido_repo, 'true']) 
+vu_exigido_res = round(vu_exigido_res, 2) + float(enganche)
+if vu_exigido_repo == vu_exigido_res:
+    data.append(["VU EXIGIDO", vu_exigido_res, vu_exigido_repo, 'true']) 
 else:
-    data.append([vu_exigido_res, vu_exigido_repo, 'false']) 
+    data.append(["VU EXIGIDO", vu_exigido_res, vu_exigido_repo, 'false']) 
 
-if vu_porexigir_repo == round(vu_porexigir_res, 2):
-    data.append([vu_porexigir_res, vu_porexigir_repo, 'true'])
+vu_porexigir_res = round(vu_porexigir_res, 2)
+if vu_porexigir_repo == vu_porexigir_res:
+    data.append(["VU POR EXIGIR", vu_porexigir_res, vu_porexigir_repo, 'true'])
 else:
-    data.append([vu_porexigir_res, vu_porexigir_repo, 'false'])
+    data.append(["VU POR EXIGIR", vu_porexigir_res, vu_porexigir_repo, 'false'])
 
 
-print (tabulate(data, headers=["Pos", "Team", "Win", "Lose"]))
+print (tabulate(data, headers=["Concepto", "Resultado", "Reporte", "Igual?"], floatfmt=".2f"))
