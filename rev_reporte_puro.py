@@ -14,11 +14,11 @@ val_line = file_valores.readline()
 arrLine_val = val_line.split()
 
 ##Valores obtenidos del reporte
-moi_repo = float(arrLine_val[0])
-ej_mensual_repo = float(arrLine_val[1])
-ej_acumulado_repo = float(arrLine_val[2])
-vu_exigido_repo = float(arrLine_val[3])
-vu_porexigir_repo = float(arrLine_val[4])
+moi_repo = float(arrLine_val[0].replace(",", ""))
+ej_mensual_repo = float(arrLine_val[1].replace(",", ""))
+ej_acumulado_repo = float(arrLine_val[2].replace(",", ""))
+vu_exigido_repo = float(arrLine_val[3].replace(",", ""))
+vu_porexigir_repo = float(arrLine_val[4].replace(",", ""))
 
 
 ##Resultados obtenidos de sumas
